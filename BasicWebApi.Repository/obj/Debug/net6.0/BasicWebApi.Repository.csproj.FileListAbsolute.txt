@@ -1,0 +1,17 @@
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Repository.deps.json
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Repository.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Repository.pdb
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Domain.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Domain.pdb
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.csproj.AssemblyReference.cache
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.AssemblyInfoInputs.cache
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.AssemblyInfo.cs
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.csproj.CoreCompileInputs.cache
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.csproj.CopyComplete
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\refint\BasicWebApi.Repository.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.pdb
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\ref\BasicWebApi.Repository.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Repository.runtimeconfig.json
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.genruntimeconfig.cache
