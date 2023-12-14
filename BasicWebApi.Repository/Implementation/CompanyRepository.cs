@@ -39,7 +39,10 @@ public class CompanyRepository : IRepository<Company>
 
     public async Task<ICollection<Company>> Get()
     {
-        return await _context.Set<Company>().ToListAsync();
+        return await _context.Set<Company>()
+            .AsNoTracking()
+            .Include(c => c.Contacts)
+            .ToListAsync();
     }
 
     public async Task<Company> Update(Company entity)

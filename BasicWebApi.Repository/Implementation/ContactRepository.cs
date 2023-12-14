@@ -22,6 +22,7 @@ namespace BasicWebApi.Repository.Implementation
         public async Task<int> Create(Contact entity)
         {
             var result = await _context.Set<Contact>().AddAsync(entity);
+
             await _context.SaveChangesAsync();
             return result != null ? 1 : 0;
         }
@@ -51,7 +52,11 @@ namespace BasicWebApi.Repository.Implementation
 
         public async Task<ICollection<Contact>> Get()
         {
-            return await _context.Set<Contact>().ToListAsync();
+            return await _context.Set<Contact>()
+                .AsNoTracking()
+                .Include(x => x.Country)
+                .Include(x => x.Company)
+                .ToListAsync();
         }
 
         public async Task<Contact> GetContactWithCompanyAndCountry(int id)

@@ -18,10 +18,25 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Company>>> GetAllCompanies()
+        public async Task<ActionResult<List<CompanyResponse>>> GetAllCompanies()
         {
             var result =  await companyService.GetAllCompanies();
-            return Ok(result);
+            List<CompanyResponse> companies = new List<CompanyResponse>();
+            foreach (var company in result)
+            {
+                var c = new CompanyResponse
+                {
+                    CompanyId = company.CompanyId,
+                    CompanyName = company.CompanyName
+                };
+                var contacts = company.Contacts?.Select(x => new ContactResponse { ContactId = x.ContactId, ContactName = x.ContactName }).ToList();
+                if (contacts != null)
+                {
+                    c.Contacts = contacts;
+                    companies.Add(c);
+                }
+            }
+            return Ok(companies);
         }
         [HttpPost]
         public async Task<ActionResult<CompanyDTO>> CreateCompany(CompanyDTO company)

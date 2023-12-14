@@ -15,3 +15,4 @@ C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\Bas
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\ref\BasicWebApi.Repository.dll
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\bin\Debug\net6.0\BasicWebApi.Repository.runtimeconfig.json
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.genruntimeconfig.cache
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi.Repository\obj\Debug\net6.0\BasicWebApi.Repository.sourcelink.json
