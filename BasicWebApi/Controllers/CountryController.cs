@@ -27,9 +27,8 @@ namespace BasicWebApi.Controllers
             var result = await countryService.GetAllCountries();
 
             var countries = _mapper.Map<List<CountryResponse>>(result);
-            countries.ForEach(x => x.Contacts = _mapper.Map<List<ContactResponse>>(x.Contacts));
 
-            return Ok(result);
+            return Ok(countries);
         }
         [HttpPost]
         public async Task<ActionResult<CreateCountryRequest>> CreateCountry(CreateCountryRequest request)
@@ -43,7 +42,7 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<Country>> UpdateCountry(UpdateCountryRequest request)
+        public async Task<ActionResult<CountryResponse>> UpdateCountry(UpdateCountryRequest request)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -51,7 +50,7 @@ namespace BasicWebApi.Controllers
 
             var result = await countryService.UpdateCountry(country);
             var response = _mapper.Map<CountryResponse>(result);
-            return Ok(result);
+            return Ok(response);
         }
 
         [HttpDelete]

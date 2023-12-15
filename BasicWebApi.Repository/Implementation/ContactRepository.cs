@@ -81,9 +81,9 @@ namespace BasicWebApi.Repository.Implementation
             {
                 result.ContactName = entity.ContactName;
                 result.ComapnyId = entity.ComapnyId;
-                result.Company = entity.Company;
+                result.Company =  _context.Set<Company>().FirstOrDefault(c => c.CompanyId == entity.ComapnyId)!;
                 result.CountryId = entity.CountryId;
-                result.Country = entity.Country;
+                result.Country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == entity.CountryId)!;
 
                 await _context.SaveChangesAsync();
                 return result;

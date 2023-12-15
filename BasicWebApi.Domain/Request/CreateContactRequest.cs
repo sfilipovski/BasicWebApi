@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain.DTOs;
+namespace BasicWebApi.Domain.Request;
 
-public class ContactDTO
+public class CreateContactRequest
 {
     public string ContactName { get; set; }
     public int CompanyId { get; set; }

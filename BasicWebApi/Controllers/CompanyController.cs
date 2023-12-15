@@ -30,9 +30,7 @@ namespace BasicWebApi.Controllers
             var result =  await companyService.GetAllCompanies();
 
             var companies = _mapper.Map<List<CompanyResponse>>(result);
-            companies.ForEach(x => x.Contacts = _mapper.Map<List<ContactResponse>>(x.Contacts));
-            
-
+          
             return Ok(companies);
         }
         [HttpPost]

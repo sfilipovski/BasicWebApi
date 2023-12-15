@@ -47,7 +47,9 @@ public class CompanyRepository : IRepository<Company>
 
     public async Task<Company> Update(Company entity)
     {
-        var result = await _context.Set<Company>().FirstOrDefaultAsync(c => c.CompanyId == entity.CompanyId);
+        var result = await _context.Set<Company>()
+            .Include(c => c.Contacts)
+            .FirstOrDefaultAsync(c => c.CompanyId == entity.CompanyId);
 
         if (result != null)
         {

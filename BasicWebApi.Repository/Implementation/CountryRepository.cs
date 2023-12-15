@@ -38,17 +38,21 @@ public class CountryRepository : IRepository<Country>
 
     public async Task<ICollection<Country>> Get()
     {
-        return await _context.Set<Country>().ToListAsync();
+        return await _context.Set<Country>()
+            .AsNoTracking()
+            .Include(c => c.Contacts)
+            .ToListAsync();
     }
 
     public async Task<Country> Update(Country entity)
     {
-        var result = await _context.Set<Country>().FirstOrDefaultAsync(c => c.CountryId == entity.CountryId);
+        var result = await _context.Set<Country>()
+            .Include(c => c.Contacts)
+            .FirstOrDefaultAsync(c => c.CountryId == entity.CountryId);
 
         if (result != null)
         {
             result.CountryName = entity.CountryName;
-            result.Contacts = entity.Contacts;
 
             await _context.SaveChangesAsync();
             return result;

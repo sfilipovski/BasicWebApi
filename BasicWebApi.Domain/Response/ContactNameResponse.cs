@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BasicWebApi.Domain.Response;
 
-public class CompanyResponse
+public class ContactNameResponse
 {
-    public string CompanyName { get; set; }
-    public List<ContactNameResponse> Contacts { get; set; }
+    public string ContactName { get; set; }
 }

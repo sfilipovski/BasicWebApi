@@ -9,5 +9,5 @@ namespace BasicWebApi.Domain.Response;
 public class CountryResponse
 {
     public string CountryName { get; set; }
-    public List<ContactResponse> Contacts { get; set; }
+    public List<ContactNameResponse> Contacts { get; set; }
 }
