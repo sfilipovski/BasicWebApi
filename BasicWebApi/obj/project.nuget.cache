@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "rZt8nvpsIGd9ISP+fPgJ6KSM84zchpobq+wIGu5AWvjt8SCw0o/MNles6v7bc8PctSwfINBYulP2exjAqKqXkg==",
+  "dgSpecHash": "qaW6OgF+Ecku0+G+YyOKnANkl8OZWAlI/Dpy/1beC0FYKJI0vJclYLPQ/RgK8es9rKRa9bvbqI+j6kmBLVqcmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\pc\\source\\repos\\BasicWebApi\\BasicWebApi\\BasicWebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\pc\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.25\\microsoft.aspnetcore.jsonpatch.6.0.25.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.25\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.25.nupkg.sha512",

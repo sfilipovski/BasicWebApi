@@ -1,5 +1,6 @@
 ﻿using BasicWebApi.Domain;
 using BasicWebApi.Domain.DTOs;
+using BasicWebApi.Domain.Models;
 using BasicWebApi.Repository;
 using BasicWebApi.Service.Interface;
 using Microsoft.AspNetCore.Http;
@@ -41,7 +42,7 @@ namespace BasicWebApi.Controllers
             return Ok(contacts);
         }
         [HttpPost]
-        public async Task<ActionResult> CreateContact(ContactDTO contact)
+        public async Task<IActionResult> CreateContact(ContactDTO contact)
         {
             if (!ModelState.IsValid) return BadRequest(contact);
 
@@ -92,10 +93,48 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpDelete]
-        public ActionResult DeleteContact(int id)
+        public IActionResult DeleteContact(int id)
         {
             _contactService.DeleteContact(id);
             return Ok("Deleted contact with id: " + id + " !");
+        }
+
+        [HttpGet("/filter")]
+        public async Task<ActionResult<ICollection<ContactApiResponse>>> FilterContact([FromQuery] int companyId, [FromQuery] int countryId)
+        {
+            var result = await _contactService.FilterContact(companyId, countryId);
+            List<ContactApiResponse> contacts = new List<ContactApiResponse>();
+            foreach(var contact in result)
+            {
+                var c = new ContactApiResponse
+                {
+                    ContactId = contact.ContactId,
+                    ContactName = contact.ContactName,
+                    CountryId = contact.CountryId,
+                    CompanyId = contact.ComapnyId,
+                    CompanyName = contact.Company.CompanyName,
+                    CountryName = contact.Country.CountryName
+                };
+                contacts.Add(c);
+            }
+            return Ok(contacts);
+        }
+
+        [HttpGet("/get")]
+        public async Task<ActionResult<ContactApiResponse>> GetContact(int id)
+        {
+            var result = await _contactService.GetContactWithCompanyAndCountry(id);
+            var contact = new ContactApiResponse
+            {
+                ContactId = result.ContactId,
+                ContactName = result.ContactName,
+                CountryId = result.CountryId,
+                CompanyId = result.ComapnyId,
+                CompanyName = result.Company.CompanyName,
+                CountryName = result.Country.CountryName
+            };
+
+            return Ok(contact);
         }
     }
 }

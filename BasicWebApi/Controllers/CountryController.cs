@@ -1,8 +1,10 @@
-﻿using BasicWebApi.Domain.DTOs;
-using BasicWebApi.Domain;
-using BasicWebApi.Service.Interface;
+﻿using BasicWebApi.Service.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using BasicWebApi.Domain.Models;
+using BasicWebApi.Domain.Response;
+using AutoMapper;
+using BasicWebApi.Domain.Request;
 
 namespace BasicWebApi.Controllers
 {
@@ -11,49 +13,49 @@ namespace BasicWebApi.Controllers
     public class CountryController : ControllerBase
     {
         private ICountryService countryService;
+        private readonly IMapper _mapper;
 
-        public CountryController(ICountryService countryService)
+        public CountryController(ICountryService countryService, IMapper mapper)
         {
             this.countryService = countryService;
+            this._mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCountries()
         {
             var result = await countryService.GetAllCountries();
+
+            var countries = _mapper.Map<List<CountryResponse>>(result);
+            countries.ForEach(x => x.Contacts = _mapper.Map<List<ContactResponse>>(x.Contacts));
+
             return Ok(result);
         }
         [HttpPost]
-        public async Task<ActionResult<CountryDTO>> CreateCountry(CountryDTO country)
+        public async Task<ActionResult<CreateCountryRequest>> CreateCountry(CreateCountryRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(country);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var Country = new Country
-            {
-                CountryName = country.CountryName
-            };
+            var country = _mapper.Map<Country>(request);
 
-            var result = await countryService.CreateCountry(Country);
+            var result = await countryService.CreateCountry(country);
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task<ActionResult<Country>> UpdateCountry(int id, CountryDTO country)
+        public async Task<ActionResult<Country>> UpdateCountry(UpdateCountryRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(country);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var Country = new Country
-            {
-                CountryId = id,
-                CountryName = country.CountryName
-            };
+            var country = _mapper.Map<Country>(request);
 
-            var result = await countryService.UpdateCountry(Country);
+            var result = await countryService.UpdateCountry(country);
+            var response = _mapper.Map<CountryResponse>(result);
             return Ok(result);
         }
 
         [HttpDelete]
-        public ActionResult DeleteCompany(int id)
+        public IActionResult DeleteCompany(int id)
         {
             countryService.DeleteCountry(id);
             return Ok("Deleted Country with id: " + id + " !");

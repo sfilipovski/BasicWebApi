@@ -1,4 +1,4 @@
-﻿using BasicWebApi.Domain;
+﻿using BasicWebApi.Domain.Models;
 using BasicWebApi.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;

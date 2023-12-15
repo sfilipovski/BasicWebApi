@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain.DTOs;
+namespace BasicWebApi.Domain.Response;
 
-public class CompanyDTO
+public class CompanyResponse
 {
     public string CompanyName { get; set; }
+    public List<ContactResponse> Contacts { get; set; }
 }

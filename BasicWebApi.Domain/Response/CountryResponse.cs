@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain.DTOs;
+namespace BasicWebApi.Domain.Response;
 
-public class CompanyResponse
+public class CountryResponse
 {
-    public int CompanyId { get; set; }
-    public string CompanyName { get; set; }
+    public string CountryName { get; set; }
     public List<ContactResponse> Contacts { get; set; }
 }

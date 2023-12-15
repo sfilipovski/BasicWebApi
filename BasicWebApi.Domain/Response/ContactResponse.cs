@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain.DTOs;
+namespace BasicWebApi.Domain.Response;
 
-public class CountryDTO
+public class ContactResponse
 {
-    public string CountryName { get; set; }
+    public string ContactName { get; set; }
 }

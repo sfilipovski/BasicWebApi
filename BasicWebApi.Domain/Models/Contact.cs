@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain;
+namespace BasicWebApi.Domain.Models;
 
 public class Contact
 {

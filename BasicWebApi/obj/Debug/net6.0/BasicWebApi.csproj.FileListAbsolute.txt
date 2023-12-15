@@ -77,3 +77,5 @@ C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\Microsoft.AspN
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\pc\source\repos\BasicWebApi\BasicWebApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

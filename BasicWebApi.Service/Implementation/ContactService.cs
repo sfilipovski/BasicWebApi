@@ -1,4 +1,4 @@
-﻿using BasicWebApi.Domain;
+﻿using BasicWebApi.Domain.Models;
 using BasicWebApi.Repository.Interface;
 using BasicWebApi.Service.Interface;
 using System;

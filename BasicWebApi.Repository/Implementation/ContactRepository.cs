@@ -1,4 +1,4 @@
-﻿using BasicWebApi.Domain;
+﻿using BasicWebApi.Domain.Models;
 using BasicWebApi.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -43,7 +43,8 @@ namespace BasicWebApi.Repository.Implementation
             var result = await _context.Set<Contact>()
                 .Include(c => c.Company)
                 .Include(c => c.Country)
-                .Where(c => c.ComapnyId == companyId || c.CountryId == countryId).ToListAsync();
+                .Where(c => c.ComapnyId == companyId || c.CountryId == countryId)
+                .ToListAsync();
 
             if (result == null) return new List<Contact>();
 

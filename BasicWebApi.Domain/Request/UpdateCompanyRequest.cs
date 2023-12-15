@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicWebApi.Domain;
+namespace BasicWebApi.Domain.Request;
 
-public class Company
+public class UpdateCompanyRequest
 {
     public int CompanyId { get; set; }
     public string CompanyName { get; set; }
-    public virtual ICollection<Contact> Contacts { get; set; }
 }

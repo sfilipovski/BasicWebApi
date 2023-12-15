@@ -1,4 +1,4 @@
-﻿using BasicWebApi.Domain;
+﻿using BasicWebApi.Domain.Models;
 using BasicWebApi.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -52,7 +52,6 @@ public class CompanyRepository : IRepository<Company>
         if (result != null)
         {
             result.CompanyName = entity.CompanyName;
-            result.Contacts = entity.Contacts;
 
             await _context.SaveChangesAsync();
             return result;

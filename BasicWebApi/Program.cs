@@ -1,12 +1,12 @@
-
-
-using BasicWebApi.Domain;
+using BasicWebApi.Domain.Models;
+using BasicWebApi.Domain.Profile;
 using BasicWebApi.Repository;
 using BasicWebApi.Repository.Implementation;
 using BasicWebApi.Repository.Interface;
 using BasicWebApi.Service.Implementation;
 using BasicWebApi.Service.Interface;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +19,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(opts =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton(MapperProfile.Initialize());
 
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
 builder.Services.AddScoped<IRepository<Country>, CountryRepository>();
