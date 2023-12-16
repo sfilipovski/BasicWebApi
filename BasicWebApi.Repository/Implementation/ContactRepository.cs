@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BasicWebApi.Repository.Implementation
 {
-    public class ContactRepository : IContactRepository
+    public class ContactRepository : IContactRepository<Contact>
     {
         private readonly ApplicationDbContext _context;
 
@@ -22,8 +22,8 @@ namespace BasicWebApi.Repository.Implementation
         public async Task<int> Create(Contact entity)
         {
             var result = await _context.Set<Contact>().AddAsync(entity);
-
             await _context.SaveChangesAsync();
+
             return result != null ? 1 : 0;
         }
 
@@ -31,11 +31,10 @@ namespace BasicWebApi.Repository.Implementation
         {
             var result = _context.Set<Contact>().FirstOrDefault(c => c.ContactId == id);
 
-            if (result != null)
-            {
-                _context.Set<Contact>().Remove(result);
-                _context.SaveChanges();
-            }
+            if (result == null) return;
+            
+            _context.Set<Contact>().Remove(result);
+            _context.SaveChanges();
         }
 
         public async Task<ICollection<Contact>> FilterContact(int companyId, int countryId)
@@ -77,19 +76,16 @@ namespace BasicWebApi.Repository.Implementation
         {
             var result = await _context.Set<Contact>().FirstOrDefaultAsync(c => c.ContactId == entity.ContactId);
 
-            if (result != null)
-            {
-                result.ContactName = entity.ContactName;
-                result.ComapnyId = entity.ComapnyId;
-                result.Company =  _context.Set<Company>().FirstOrDefault(c => c.CompanyId == entity.ComapnyId)!;
-                result.CountryId = entity.CountryId;
-                result.Country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == entity.CountryId)!;
-
-                await _context.SaveChangesAsync();
-                return result;
-            }
-
-            return null;
+            if (result == null) return null;
+            
+            result.ContactName = entity.ContactName;
+            result.ComapnyId = entity.ComapnyId;
+            result.Company =  _context.Set<Company>().FirstOrDefault(c => c.CompanyId == entity.ComapnyId)!;
+            result.CountryId = entity.CountryId;
+            result.Country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == entity.CountryId)!;
+            await _context.SaveChangesAsync();
+            
+            return result;
         }
     }
 }

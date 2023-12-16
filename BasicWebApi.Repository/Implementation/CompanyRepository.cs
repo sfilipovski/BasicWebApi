@@ -22,19 +22,18 @@ public class CompanyRepository : IRepository<Company>
     {
         var result = await _context.Set<Company>().AddAsync(entity);
         await _context.SaveChangesAsync();
+
         return result != null ? 1 : 0;
     }
 
     public void Delete(int id)
     {
-        var result =  _context.Set<Company>().FirstOrDefault(c => c.CompanyId == id);
+        var result = _context.Set<Company>().FirstOrDefault(c => c.CompanyId == id);
 
-        if(result != null)
-        {
-            _context.Set<Company>().Remove(result);
-            _context.SaveChanges();
-        }
-        return;
+        if (result == null) return;
+       
+        _context.Set<Company>().Remove(result);
+        _context.SaveChanges();
     }
 
     public async Task<ICollection<Company>> Get()
@@ -51,14 +50,11 @@ public class CompanyRepository : IRepository<Company>
             .Include(c => c.Contacts)
             .FirstOrDefaultAsync(c => c.CompanyId == entity.CompanyId);
 
-        if (result != null)
-        {
-            result.CompanyName = entity.CompanyName;
+        if (result == null) return null;
 
-            await _context.SaveChangesAsync();
-            return result;
-        }
+        result.CompanyName = entity.CompanyName;
+        await _context.SaveChangesAsync();
 
-        return null;
+        return result;
     }
 }

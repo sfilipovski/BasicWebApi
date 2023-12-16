@@ -11,9 +11,9 @@ namespace BasicWebApi.Service.Implementation;
 
 public class ContactService : IContactService
 {
-    private readonly IContactRepository _contactRepository;
+    private readonly IContactRepository<Contact> _contactRepository;
 
-    public ContactService(IContactRepository contactRepository)
+    public ContactService(IContactRepository<Contact> contactRepository)
     {
         _contactRepository = contactRepository;
     }

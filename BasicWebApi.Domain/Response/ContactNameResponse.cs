@@ -8,5 +8,6 @@ namespace BasicWebApi.Domain.Response;
 
 public class ContactNameResponse
 {
+    public int ContactId { get; set; }
     public string ContactName { get; set; }
 }

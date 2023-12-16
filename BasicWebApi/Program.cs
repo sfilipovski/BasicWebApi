@@ -24,7 +24,7 @@ builder.Services.AddSingleton(MapperProfile.Initialize());
 
 builder.Services.AddScoped<IRepository<Company>, CompanyRepository>();
 builder.Services.AddScoped<IRepository<Country>, CountryRepository>();
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<IContactRepository<Contact>, ContactRepository>();
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<ICountryService, CountryService>();

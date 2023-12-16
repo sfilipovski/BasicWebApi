@@ -36,36 +36,36 @@ namespace BasicWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateContact(CreateContactRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.ContactName)) return BadRequest(ModelState);
 
             var contact = _mapper.Map<Contact>(request);
 
-            var company = _context.Set<Company>().FirstOrDefault(c => c.CompanyId == request.CompanyId)!;
-            var country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == request.CountryId)!;
+            var company = _context.Set<Company>().FirstOrDefault(c => c.CompanyId == request.CompanyId);
+            if (company == null) return BadRequest(company);
+
+            var country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == request.CountryId);
+            if (country == null) return BadRequest(country);
 
             contact.Company = company;
             contact.Country = country;
 
             var result = await _contactService.CreateContact(contact);
-            return Ok(result);
+            if (result == 1) return Ok("Added contact: " + request.ContactName);
+
+            return BadRequest(ModelState);
 
         }
 
         [HttpPut]
         public async Task<ActionResult<ContactResponse>> UpdateContact(UpdateContactRequest request)
         {
-            if (!ModelState.IsValid) { return BadRequest(ModelState); }
-
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.ContactName)) { return BadRequest(ModelState); }
 
             var contact = _mapper.Map<Contact>(request);
 
-            var company = _context.Set<Company>().FirstOrDefault(c => c.CompanyId == request.CompanyId)!;
-            var country = _context.Set<Country>().FirstOrDefault(c => c.CountryId == request.CountryId)!;
-
-            contact.Company = company;
-            contact.Country = country;
-
             var result = await _contactService.UpdateCompany(contact);
+            if (result == null) return BadRequest(result);
+
             var response = _mapper.Map<ContactResponse>(result);
 
             return Ok(response);
@@ -78,7 +78,8 @@ namespace BasicWebApi.Controllers
             return Ok("Deleted contact with id: " + id + " !");
         }
 
-        [HttpGet("/filter")]
+        [Route("filter")]
+        [HttpGet]
         public async Task<ActionResult<ICollection<ContactResponse>>> FilterContact([FromQuery] int companyId, [FromQuery] int countryId)
         {
             var result = await _contactService.FilterContact(companyId, countryId);
@@ -87,10 +88,13 @@ namespace BasicWebApi.Controllers
             return Ok(response);
         }
 
-        [HttpGet("/get")]
+        [Route("get")]
+        [HttpGet]
         public async Task<ActionResult<ContactResponse>> GetContact(int id)
         {
             var result = await _contactService.GetContactWithCompanyAndCountry(id);
+            if(result == null) return NotFound();
+
             var response = _mapper.Map<ContactResponse>(result);
 
             return Ok(response);

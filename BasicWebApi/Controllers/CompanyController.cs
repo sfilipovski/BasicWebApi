@@ -28,7 +28,6 @@ namespace BasicWebApi.Controllers
         public async Task<ActionResult<List<CompanyResponse>>> GetAllCompanies()
         {
             var result =  await companyService.GetAllCompanies();
-
             var companies = _mapper.Map<List<CompanyResponse>>(result);
           
             return Ok(companies);
@@ -36,18 +35,20 @@ namespace BasicWebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCompany(CreateCompanyRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.CompanyName)) return BadRequest(ModelState);
 
             var company = _mapper.Map<Company>(request);
-
             var result = await companyService.CreateCompany(company);
-            return Ok(result); 
+
+            if (result == 1) return Ok("Added company: " + request.CompanyName);
+
+            return BadRequest(ModelState);
         }
 
         [HttpPut]
         public async Task<ActionResult<CompanyResponse>> UpdateCompany(UpdateCompanyRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.CompanyName)) return BadRequest(ModelState);
 
             var company = _mapper.Map<Company>(request);
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BasicWebApi.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59e71dadcbbb8152d520ad591ec6aa09798b90fa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ce4123ce5ae981071ae2f49defdcb584b263cab")]
 [assembly: System.Reflection.AssemblyProductAttribute("BasicWebApi.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BasicWebApi.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -22,6 +22,7 @@ public class CountryRepository : IRepository<Country>
     {
         var result = await _context.Set<Country>().AddAsync(entity);
         await _context.SaveChangesAsync();
+
         return result != null ? 1 : 0;
     }
 
@@ -29,11 +30,11 @@ public class CountryRepository : IRepository<Country>
     {
         var result = _context.Set<Country>().FirstOrDefault(c => c.CountryId == id);
 
-        if (result != null)
-        {
-            _context.Set<Country>().Remove(result);
-            _context.SaveChanges();
-        }
+        if (result == null) return;
+        
+        _context.Set<Country>().Remove(result);
+        _context.SaveChanges();
+        
     }
 
     public async Task<ICollection<Country>> Get()
@@ -50,14 +51,11 @@ public class CountryRepository : IRepository<Country>
             .Include(c => c.Contacts)
             .FirstOrDefaultAsync(c => c.CountryId == entity.CountryId);
 
-        if (result != null)
-        {
-            result.CountryName = entity.CountryName;
-
-            await _context.SaveChangesAsync();
-            return result;
-        }
-
-        return null;
+        if (result == null) return null;
+        
+        result.CountryName = entity.CountryName;
+        await _context.SaveChangesAsync();
+        
+        return result;
     }
 }

@@ -25,31 +25,35 @@ namespace BasicWebApi.Controllers
         public async Task<IActionResult> GetAllCountries()
         {
             var result = await countryService.GetAllCountries();
-
             var countries = _mapper.Map<List<CountryResponse>>(result);
 
             return Ok(countries);
         }
         [HttpPost]
-        public async Task<ActionResult<CreateCountryRequest>> CreateCountry(CreateCountryRequest request)
+        public async Task<IActionResult> CreateCountry(CreateCountryRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.CountryName)) return BadRequest(ModelState);
 
             var country = _mapper.Map<Country>(request);
-
             var result = await countryService.CreateCountry(country);
-            return Ok(result);
+
+            if(result==1) return Ok("Added country: "+request.CountryName);
+
+            return BadRequest(ModelState);
         }
 
         [HttpPut]
         public async Task<ActionResult<CountryResponse>> UpdateCountry(UpdateCountryRequest request)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid || string.IsNullOrEmpty(request.CountryName)) return BadRequest(ModelState);
 
             var country = _mapper.Map<Country>(request);
 
             var result = await countryService.UpdateCountry(country);
+            if (result == null) return BadRequest(result);
+
             var response = _mapper.Map<CountryResponse>(result);
+
             return Ok(response);
         }
 

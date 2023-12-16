@@ -8,6 +8,7 @@ namespace BasicWebApi.Domain.Response;
 
 public class CountryResponse
 {
+    public int CountryId { get; set; }
     public string CountryName { get; set; }
     public List<ContactNameResponse> Contacts { get; set; }
 }
