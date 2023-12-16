@@ -22,7 +22,7 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCountries()
+        public async Task<ActionResult> GetAllCountries()
         {
             var result = await countryService.GetAllCountries();
             var countries = _mapper.Map<List<CountryResponse>>(result);
@@ -30,7 +30,7 @@ namespace BasicWebApi.Controllers
             return Ok(countries);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCountry(CreateCountryRequest request)
+        public async Task<ActionResult> CreateCountry(CreateCountryRequest request)
         {
             if (!ModelState.IsValid || string.IsNullOrEmpty(request.CountryName)) return BadRequest(ModelState);
 
@@ -58,7 +58,7 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteCompany(int id)
+        public ActionResult DeleteCompany(int id)
         {
             countryService.DeleteCountry(id);
             return Ok("Deleted Country with id: " + id + " !");

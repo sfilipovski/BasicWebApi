@@ -34,7 +34,7 @@ namespace BasicWebApi.Controllers
             return Ok(contacts);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateContact(CreateContactRequest request)
+        public async Task<ActionResult> CreateContact(CreateContactRequest request)
         {
             if (!ModelState.IsValid || string.IsNullOrEmpty(request.ContactName)) return BadRequest(ModelState);
 
@@ -72,7 +72,7 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteContact(int id)
+        public ActionResult DeleteContact(int id)
         {
             _contactService.DeleteContact(id);
             return Ok("Deleted contact with id: " + id + " !");

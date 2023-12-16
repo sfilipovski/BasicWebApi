@@ -19,16 +19,16 @@ public static class MapperProfile
             cfg.CreateMap<Company, CompanyResponse>()
             .ForMember(dest => dest.Contacts,
                 opt => opt.MapFrom(src => src.Contacts.Select(x => new ContactNameResponse { ContactName = x.ContactName, ContactId = x.ContactId})));
-            
-            cfg.CreateMap<Contact, ContactNameResponse>();
             cfg.CreateMap<CreateCompanyRequest, Company>();
             cfg.CreateMap<UpdateCompanyRequest, Company>();
+
             cfg.CreateMap<Country, CountryResponse>()
             .ForMember(dest => dest.Contacts,
                 opt => opt.MapFrom(src => src.Contacts.Select(x => new ContactNameResponse { ContactName = x.ContactName, ContactId = x.ContactId })));
-
             cfg.CreateMap<CreateCountryRequest, Country>();
             cfg.CreateMap<UpdateCountryRequest, Country>();
+
+            cfg.CreateMap<Contact, ContactNameResponse>();
             cfg.CreateMap<Contact, ContactResponse>()
             .ForMember(dest => dest.CompanyName,
                 opt => opt.MapFrom(src => src.Company.CompanyName))
@@ -36,15 +36,12 @@ public static class MapperProfile
                 opt => opt.MapFrom(src => src.Country.CountryName))
             .ForMember(dest => dest.CompanyId,
                 opt => opt.MapFrom(src => src.ComapnyId));
-
             cfg.CreateMap<CreateContactRequest, Contact>()
             .ForMember(dest => dest.ComapnyId,
                 opt => opt.MapFrom(src => src.CompanyId));
-
             cfg.CreateMap<UpdateContactRequest, Contact>()
             .ForMember(dest => dest.ComapnyId,
                 opt => opt.MapFrom(src => src.CompanyId));
-
         });
 
         return config.CreateMapper();

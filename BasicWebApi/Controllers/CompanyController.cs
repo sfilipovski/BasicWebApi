@@ -33,7 +33,7 @@ namespace BasicWebApi.Controllers
             return Ok(companies);
         }
         [HttpPost]
-        public async Task<IActionResult> CreateCompany(CreateCompanyRequest request)
+        public async Task<ActionResult> CreateCompany(CreateCompanyRequest request)
         {
             if (!ModelState.IsValid || string.IsNullOrEmpty(request.CompanyName)) return BadRequest(ModelState);
 
@@ -59,7 +59,7 @@ namespace BasicWebApi.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteCompany(int id)
+        public ActionResult DeleteCompany(int id)
         {
             companyService.DeleteCompany(id);
             return Ok("Deleted Company with id :" + id + " !");
